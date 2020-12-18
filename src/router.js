@@ -2,7 +2,7 @@ import vueRouter from 'vue-router'
 import Home from './components/Home' 
 import Login from './components/Login'
 import Sign_up from './components/Sign_up'
-import Ini_session from "./components/ini_session"
+import Ini_session from './components/ini_session'
 
 import App from './App'
 

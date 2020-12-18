@@ -84,7 +84,7 @@
 <script>
     import axios from "axios";
     export default{
-        name: "Ini_session",
+        name: "ini_session",
         data: function(){
             return{
                 nombres: "",
