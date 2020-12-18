@@ -97,7 +97,7 @@
             this.username = this.$route.params.username
             this.password = this.$route.params.password
             let self = this
-            axios.post("http://127.0.0.1:8000/user/auth/", {
+            axios.post("https://finanzaspersonales3.herokuapp.com/user/auth/", {
                 username: this.username,
                 password: this.password
             })

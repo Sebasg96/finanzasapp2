@@ -192,7 +192,7 @@ export default {
       ){
         //alert("Peticion enviada")
         axios
-          .put("http://127.0.0.1:8000/user/create/", datosJson)
+          .put("https://finanzaspersonales3.herokuapp.com/user/create/", datosJson)
           //.put("https://app-finanzas-personales.herokuapp.com/user/create/", datosJson)
           .then((Response) => {
             alert("Registro completado satisfactoriamente"); 
