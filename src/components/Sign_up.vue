@@ -161,7 +161,7 @@ export default {
     };
   },
   methods: {
-   /* showAlert() {
+    showAlert() {
       // Use sweetalert2
       if (Response == true) {
             this.$swal("Registro completado satisfactoriamente");
@@ -170,7 +170,7 @@ export default {
             this.$swal("No se pudo crear el usuario");
           }
 
-    },*/
+    },
 
     addUser: function () {
       var datosJson = {
@@ -195,15 +195,15 @@ export default {
           .put("https://finanzaspersonales3.herokuapp.com/user/create/", datosJson)
           //.put("https://app-finanzas-personales.herokuapp.com/user/create/", datosJson)
           .then((Response) => {
-            alert("Registro completado satisfactoriamente"); 
-            //this.showAlert(); 
+            //alert("Registro completado satisfactoriamente"); 
+            this.showAlert(); 
           })
           .catch((err) => {
             console.log("error en la creacion");
           });
       }else{
-          alert("No se pudo crear el usuario")
-          //this.showAlert(); 
+          //alert("No se pudo crear el usuario")
+          this.showAlert(); 
       }
     },
   },
