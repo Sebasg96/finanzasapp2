@@ -162,7 +162,6 @@
       <br>
       <br>
 <!-- -->
-
         <div class="container-sm" style="border:0px">
           <div class="row">
               <div class="col-md-6 col-md-offset-3">
@@ -233,7 +232,6 @@
     </div>
 </template>
 
-<!-- Logo e icono usuario -->
 <script>
     import axios from "axios";
     export default{
