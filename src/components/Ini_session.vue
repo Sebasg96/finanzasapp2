@@ -226,15 +226,13 @@
                       </div>
                     </div>
                   </div>        
-
-                   </div>    
+                  </div>    
               </div>
           </div>
         </div>          
-
     </div>
-
 </template>
+
 <!-- Logo e icono usuario -->
 <script>
     import axios from "axios";
