@@ -90,7 +90,8 @@
                 nombres: "",
                 apellidos: "",
                 fecha_registro: "",
-                email: ""
+                email: "",
+                showModal: false
             }
         },
         created: function(){
