@@ -1,12 +1,167 @@
 <template>
-    <div id="ini_session">
-        
+    <div id="ini_session">    
+<!-- Inicio Ventana modal actualizar/Eliminar -->
+<script type="text/x-template" id="modal-template">
+  <transition name="modal">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+  <!-- Botón Cerrar ventana modal -->
+  <button class="modal-default-button" @click="$emit('close')">X</button>
+  <!-- cabecera Cerrar ventana modal -->
+          <div class="modal-header">
+            <slot name="header">
+              Mis Datos
+            </slot>
+          </div>
+  <!-- body Cerrar ventana modal -->
+          <div class="modal-body">
+            <slot name="body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <!-- Formulario Registro-->
+                  <form
+                    id="register-form"
+                    action="#"
+                    method="put"
+                    role="form"
+                    style="display: block"
+                  >
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        name="nombres"
+                        id="nombres"
+                        tabindex="1"
+                        class="form-control"
+                        placeholder="Nombres"
+                        v-model="nombres"
+                        v-bind:value="nombres"
+                      />{{nombres}}
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        name="apellidos"
+                        id="apellidos"
+                        tabindex="1"
+                        class="form-control"
+                        placeholder="Apellidos"
+                        v-model="apellidos"
+                      />{{apellidos}}
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        tabindex="1"
+                        class="form-control"
+                        placeholder="E-mail"
+                        v-model="email"
+                      />{{email}}
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        tabindex="1"
+                        class="form-control"
+                        placeholder="Usuario"
+                        v-model="username"
+                      />{{username}}
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        tabindex="2"
+                        class="form-control"
+                        placeholder="Contraseña"
+                        v-model="password"
+                      />{{password}}
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="password"
+                        name="confirm-password"
+                        id="confirm-password"
+                        tabindex="2"
+                        class="form-control"
+                        placeholder="Confirmar contraseña"
+                        v-model="confirm_password"
+                      />{{password}}
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <input
+                            type="submit"
+                            name="actualizar"
+                            id="actualizar"
+                            tabindex="4"
+                            class="form-control btn btn-register"
+                            value="Actualizar"                           
+                          />
+                        </div>
+                        <div class="col-sm-6">
+                          <input
+                            type="submit"
+                            name="eliminar"
+                            id="eliminar"
+                            tabindex="4"
+                            class="form-control btn btn-register"
+                            value="Eliminarme"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </slot>
+          </div>
+<!-- Inicio footer ventana modal -->
+          <div class="modal-footer">
+            <footer class="page-footer font-small blue pt-4"> 
+              <!-- Copyright -->
+              <div class="footer-copyright text-center py-3">© 2020 Copyright:<a href="#"> Finir</a>
+              </div>
+              <!-- Copyright -->
+            </footer> 
+<!-- Fin footer ventana modal -->                 
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</script>
+<!-- Fin Ventana modal actualizar/Eliminar -->
       <br>
       <br>
       <br>
       <br>
       <br>
-      <h4 class="text-white text-right "> Usuario: {{username}}  </h4>
+<!-- Botón para abrir ventana modal -->      
+<button class="btn btn-primary" @click="showModal = true"> 
+      <h4 class="text-white text-right ">
+        <i class="fas fa-user-cog"></i> Usuario: {{username}} 
+      </h4>
+</button>
+  <!-- usa el componente modal-->
+  <modal v-if="showModal" @close="showModal = false">
+    <!--
+      puedes usar contenido personalizado aquí para sobrescribir
+      contenido predeterminado
+    -->
+    <h3 slot="header">Mis Datos</h3>
+  </modal>
+      <br>
+      <br>
+      <br>
+<!-- -->
 
         <div class="container-sm" style="border:0px">
           <div class="row">
