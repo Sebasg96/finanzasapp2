@@ -27,3 +27,7 @@ new Vue({
     components: { App },//componente raiz
     template: '<App/>'
 })
+
+Vue.component('modal', {
+    template: '#modal-template'
+  })
