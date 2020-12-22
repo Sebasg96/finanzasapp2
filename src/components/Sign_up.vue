@@ -161,7 +161,7 @@ export default {
     };
   },
   methods: {
-    showAlert() {
+    showAlert(Response) {
       // Use sweetalert2
       if (Response == true) {
             this.$swal("Registro completado satisfactoriamente");
@@ -192,11 +192,11 @@ export default {
       ){
         //alert("Peticion enviada")
         axios
-          .put("https://finanzaspersonales3.herokuapp.com/user/create/", datosJson)
+          .put("http://127.0.0.1:8000/user/create/", datosJson)
           //.put("https://app-finanzas-personales.herokuapp.com/user/create/", datosJson)
           .then((Response) => {
             //alert("Registro completado satisfactoriamente"); 
-            this.showAlert(); 
+            this.showAlert(Response); 
           })
           .catch((err) => {
             console.log("error en la creacion");

@@ -23,91 +23,37 @@
                   <form
                     id="register-form"
                     action="#"
-                    method="put"
+                    method="post"
                     role="form"
                     style="display: block"
                   >
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        name="nombres"
-                        id="nombres"
-                        tabindex="1"
-                        class="form-control"
-                        placeholder="Nombres"
-                        v-model="nombres"
-                        v-bind:value="nombres"
-                      />{{nombres}}
                     </div>
                     <div class="form-group">
                       <input
                         type="text"
-                        name="apellidos"
-                        id="apellidos"
+                        id="nuevo_username"
                         tabindex="1"
                         class="form-control"
-                        placeholder="Apellidos"
-                        v-model="apellidos"
-                      />{{apellidos}}
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        tabindex="1"
-                        class="form-control"
-                        placeholder="E-mail"
-                        v-model="email"
-                      />{{email}}
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        name="username"
-                        id="username"
-                        tabindex="1"
-                        class="form-control"
-                        placeholder="Usuario"
-                        v-model="username"
-                      />{{username}}
+                        value={{username}}
+                        placeholder="Username"
+                      />
                     </div>
                     <div class="form-group">
                       <input
                         type="password"
-                        name="password"
-                        id="password"
+                        id="nuevo_password"
                         tabindex="2"
                         class="form-control"
-                        placeholder="Contraseña"
-                        v-model="password"
-                      />{{password}}
+                        value={{password}}
+                        placeholder="Password"
+                      />
                     </div>
-                    <div class="form-group">
-                      <input
-                        type="password"
-                        name="confirm-password"
-                        id="confirm-password"
-                        tabindex="2"
-                        class="form-control"
-                        placeholder="Confirmar contraseña"
-                        v-model="confirm_password"
-                      />{{password}}
                     </div>
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6">
                           <input
-                            type="submit"
-                            name="actualizar"
-                            id="actualizar"
-                            tabindex="4"
-                            class="form-control btn btn-register"
-                            value="Actualizar"                           
-                          />
-                        </div>
-                        <div class="col-sm-6">
-                          <input
+                            v-on:click="eliminar_usuario"
                             type="submit"
                             name="eliminar"
                             id="eliminar"
@@ -187,7 +133,7 @@
                                     <label class="label">Nombre del ítem: </label>
                                   </div>
                                   <div class="col-md-6">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
+                                    <input name="nombre_item" id="nombre_item" tabindex="2" class="form-control" placeholder="Nombre del item">
                                   </div>
                                 </div>
                                 <div class="row">
@@ -195,7 +141,7 @@
                                     <label class="label">Valor: </label>
                                   </div>
                                   <div class="col-md-6">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
+                                    <input name="valor" id="valor" tabindex="2" class="form-control" placeholder="Valor">
                                   </div>
                                 </div>
                                 <div class="row">
@@ -203,7 +149,7 @@
                                     <label class="label">Fecha: </label>
                                   </div>
                                   <div class="col-md-6">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
+                                    <input name="fecha" id="fecha" tabindex="2" class="form-control" placeholder="fecha">
                                   </div>
                                 </div>
                                 <div class="row">
@@ -246,28 +192,27 @@
             }
         },
         created: function(){
+            this.nombres = this.$route.params.nombres
+            this.apellidos = this.$route.params.apellidos
             this.username = this.$route.params.username
             this.password = this.$route.params.password
             let self = this
-            axios.post("https://finanzaspersonales3.herokuapp.com/user/auth/", {
-                username: this.username,
-                password: this.password
-            })
-            .then((result) => {
-                if (result.data.message){
-                    alert(result.data.message)
-                }
-                else{
-                    this.nombres = result.data.nombres
-                    this.apellidos = result.data.apellidos
-                    this.email = result.data.email
-                    this.fecha_registro = result.data.fecha_registro
-                }
-            })
-            .catch((error) =>{
-                console.log(error)
-                alert("Error del sistema")
-            })
+        },
+        methods:{
+          eliminar_usuario: function(){
+            var datos = {
+              username: docs.getElementById("username").value,
+              password: docs.getElementById("password").value
+            }
+            axios.post("http://127.0.0.1:8000/user/delete/", datos)
+                .then((result) => {
+                      alert(result.data)
+                      this.$router.push({name: "Login"})
+                })
+                .catch((error) =>{
+                  console.log(error)
+                })
+          }
         }
     }
 
