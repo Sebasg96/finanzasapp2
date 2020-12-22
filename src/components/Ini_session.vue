@@ -52,15 +52,7 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6">
-                          <input
-                            v-on:click="eliminar_usuario"
-                            type="submit"
-                            name="eliminar"
-                            id="eliminar"
-                            tabindex="4"
-                            class="form-control btn btn-register"
-                            value="Eliminarme"
-                          />
+                        <button class="modal-default-button" @click="$emit('eliminar')">Eliminar</button>
                         </div>
                       </div>
                     </div>
@@ -97,7 +89,7 @@
       </h4>
 </button>
   <!-- usa el componente modal-->
-  <modal v-if="showModal" @close="showModal = false">
+  <modal v-if="showModal" @close="showModal = false" @eliminar="eliminar_usuario">
     <!--
       puedes usar contenido personalizado aquí para sobrescribir
       contenido predeterminado
@@ -188,7 +180,8 @@
                 apellidos: "",
                 fecha_registro: "",
                 email: "",
-                showModal: false
+                showModal: false,
+                nuevo_username:""
             }
         },
         created: function(){
@@ -200,11 +193,7 @@
         },
         methods:{
           eliminar_usuario: function(){
-            var datos = {
-              username: docs.getElementById("username").value,
-              password: docs.getElementById("password").value
-            }
-            axios.post("http://127.0.0.1:8000/user/delete/", datos)
+            axios.post("https://finanzaspersonales3.herokuapp.com/user/delete/", datos)
                 .then((result) => {
                       alert(result.data)
                       this.$router.push({name: "Login"})
@@ -213,6 +202,7 @@
                   console.log(error)
                 })
           }
+
         }
     }
 

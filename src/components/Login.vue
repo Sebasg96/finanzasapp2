@@ -98,7 +98,7 @@ import axios from "axios";
                   username : document.getElementById("username").value,
                   password : document.getElementById("password").value
                 } 
-                axios.post("http://127.0.0.1:8000/user/auth/", datos)
+                axios.post("https://finanzaspersonales3.herokuapp.com/user/auth/", datos)
                 .then((result) => {
                       let nombres = result.data.nombres
                       let apellidos = result.data.apellidos
